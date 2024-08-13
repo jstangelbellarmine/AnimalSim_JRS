@@ -1,0 +1,13 @@
+
+public class BrownBear {
+
+	private String subSpecies;
+	
+	public BrownBear() {
+		
+	}//end BrownBear
+	
+	public BrownBear(int simID, Location l, String subSpecies) {
+		
+	}//end Brown Bear
+}
