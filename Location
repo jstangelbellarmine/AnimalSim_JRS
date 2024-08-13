@@ -1,0 +1,27 @@
+
+public class Location {
+
+		private int xCoord;
+		private int yCoord;
+		
+		public Location(int x, int y) {
+			x = 0;
+			y = 0;
+		}//end empty-argument constructor
+		
+		public Location(int x, int y) {
+			this.x = x;
+			this.y = y;
+			
+		}//end constructor that sets both to 0
+
+		public update(int x, int y) {
+			this.x = xCoord;
+			this.y = yCoord;
+		}//end update
+		
+		public getCoordinte() {
+			return int[int X, int y];
+		}
+
+}
