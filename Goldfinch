@@ -1,0 +1,14 @@
+
+public class Goldfinch {
+
+	private double wingSpan;
+	
+	public GoldFinch() {
+		
+	}//end goldFinch
+	
+	public GoldFinch(int simID, Location l, windSpan ws) {
+		
+	}//end GoldFinch
+	
+}
