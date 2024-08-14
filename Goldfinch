@@ -1,30 +1,47 @@
-
 public class Goldfinch extends Animal {
 
-	private double wingSpan;
-	
+    private double wingSpan;
 
-	
-	public GoldFinch(int simID, Location l, double wingSpan) throw InvalidWingspanException {
-		super(simID, l);
+    public Goldfinch() {
+        super(); 
+        this.wingSpan = 9.0; 
+    }//end empty-argument constructor 
+
+    public Goldfinch(int simID, Location l, double wingSpan) throws InvalidWingspanException {
+        super(simID, l);
         this.full = false;
         this.rested = true;
+        if (wingSpan < 5.0 || wingSpan > 11.0) {
+            throw new InvalidWingspanException("Invalid Wingspan. Please remeasure and remember: minimum wingspan is 5cm and maximum wingspan is 11cm.");
+        }
+        this.wingSpan = wingSpan;
+    }//end preferred constructor
+
+    public void setWingSpan(double wingSpan) {
         try {
             if (wingSpan < 5.0 || wingSpan > 11.0) {
                 throw new InvalidWingspanException("Invalid Wingspan. Please remeasure and remember: minimum wingspan is 5cm and maximum wingspan is 11cm.");
             }
             this.wingSpan = wingSpan;
-        	} 
-        catch (InvalidWingspanException e)
+        } catch (InvalidWingspanException e) 
         {
             System.out.println("Error: " + e.getMessage());
         }
-    }
-	
-	
+    }//end setWingSpan
+
+    public double getWingSpan() {
+        return wingSpan;
+    }//end getWingSpan
+
     public class InvalidWingspanException extends Exception {
         public InvalidWingspanException(String message) {
             super(message);
         }
-    	}
+    }//end InvalidWingspanException class
+    
+    @Override
+    public String toString() {
+        return "Goldfinch [simID=" + getSimID() + ", location=" + getLocation().getCoordinates()[0] + "," + getLocation().getCoordinates()[1] +
+               ", full=" + isFull() + ", rested=" + isRested() + ", wingSpan=" + wingSpan + "]";
+    }//end toString
 }//end class
