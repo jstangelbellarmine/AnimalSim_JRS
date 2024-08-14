@@ -1,27 +1,60 @@
-
 public class Location {
 
-		private int xCoord;
-		private int yCoord;
-		
-		public Location(int x, int y) {
-			x = 0;
-			y = 0;
-		}//end empty-argument constructor
-		
-		public Location(int x, int y) {
-			this.x = x;
-			this.y = y;
-			
-		}//end constructor that sets both to 0
+    private int xCoord;
+    private int yCoord;
 
-		public update(int x, int y) {
-			this.x = xCoord;
-			this.y = yCoord;
-		}//end update
-		
-		public getCoordinte() {
-			return int[int X, int y];
-		}
+    
+    public Location() {
+        setCoordinates(0, 0);
+    }//end empty-argument constructor
 
-}
+    
+    public Location(int x, int y) {
+        setCoordinates(x, y);
+    }// Preferred constructor
+
+    
+    private void setCoordinates(int x, int y) {
+        try {
+            if (x < 0 || y < 0) 
+            {
+                throw new InvalidCoordinateException("Coordinates cannot be negative.");
+            }//end if
+            this.xCoord = x;
+            this.yCoord = y;
+        }//end try 
+        
+        catch (InvalidCoordinateException e) {
+            System.out.println("Error in setting coordinates: " + e.getMessage());
+            this.xCoord = 0;
+            this.yCoord = 0;
+        }//end catch
+    }//end setCoordiantes
+
+    // Update method
+    public void update(int x, int y) {
+        setCoordinates(x, y);
+    }//end setCoordinates
+
+    // Get coordinates method
+    public int[] getCoordinates() {
+        return new int[]{xCoord, yCoord};
+    }//end getCoordinates
+
+    // Getters
+    public int getxCoord() {
+        return xCoord;
+    }//end getxCoord
+
+    public int getyCoord() {
+        return yCoord;
+    }//end getyCoord
+
+    public class InvalidCoordinateException extends Exception {
+        public InvalidCoordinateException(String message) {
+            super(message);
+        }
+    }//end InvalidCoordinateException class
+    
+    
+}//end class
