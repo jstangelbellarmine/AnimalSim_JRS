@@ -1,14 +1,30 @@
 
-public class Goldfinch {
+public class Goldfinch extends Animal {
 
 	private double wingSpan;
 	
-	public GoldFinch() {
-		
-	}//end goldFinch
+
 	
-	public GoldFinch(int simID, Location l, windSpan ws) {
-		
-	}//end GoldFinch
+	public GoldFinch(int simID, Location l, double wingSpan) throw InvalidWingspanException {
+		super(simID, l);
+        this.full = false;
+        this.rested = true;
+        try {
+            if (wingSpan < 5.0 || wingSpan > 11.0) {
+                throw new InvalidWingspanException("Invalid Wingspan. Please remeasure and remember: minimum wingspan is 5cm and maximum wingspan is 11cm.");
+            }
+            this.wingSpan = wingSpan;
+        	} 
+        catch (InvalidWingspanException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 	
-}
+	
+    public class InvalidWingspanException extends Exception {
+        public InvalidWingspanException(String message) {
+            super(message);
+        }
+    	}
+}//end class
