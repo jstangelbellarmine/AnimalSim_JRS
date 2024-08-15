@@ -1,5 +1,7 @@
 
 public interface Swimmable {
 
-	public void swim(int direction);
+
+	void swim(int xSwam, int ySwam);
+	
 }
