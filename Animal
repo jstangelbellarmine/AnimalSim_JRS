@@ -102,10 +102,10 @@ public abstract class Animal {
     }//end setRested
 
    
-    public class InvalidSimIDException extends Exception {
+    public class InvalidSimIDException extends RuntimeException {
         public InvalidSimIDException(String message) {
-            super(message);
-        }//end InvalidSimIDException
+            super("Please reenter simID. This simID is invalid: "+ message);
+        }
         
     }//end InvalidSimIDException exception
     
