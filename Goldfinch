@@ -33,7 +33,27 @@ public class Goldfinch extends Animal {
         return wingSpan;
     }//end getWingSpan
 
-    public class InvalidWingspanException extends Exception {
+    
+    public void walk(int xWalked, int yWalked) {
+    	
+        Location currentLocation = getLocation();
+        int[] coordinates = currentLocation.getCoordinates();
+        int x = coordinates[0];
+        int y = coordinates[1];
+        
+        x += (3 * xWalked);
+        y += (3 * yWalked);
+        
+        currentLocation.update(x, y);
+    }//end walked 
+    
+    public void fly(int x, int y) {
+        getLocation().setCoordinates(x, y);
+    }//end fly
+    
+  
+    
+    public class InvalidWingspanException extends RuntimeException {
         public InvalidWingspanException(String message) {
             super(message);
         }
@@ -44,4 +64,5 @@ public class Goldfinch extends Animal {
         return "Goldfinch [simID=" + getSimID() + ", location=" + getLocation().getCoordinates()[0] + "," + getLocation().getCoordinates()[1] +
                ", full=" + isFull() + ", rested=" + isRested() + ", wingSpan=" + wingSpan + "]";
     }//end toString
+    
 }//end class
