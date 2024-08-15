@@ -1,5 +1,5 @@
-
 public interface Walkable {
-
-	public void walk(int direction);
-}
+	
+    void walk(int xWalked, int yWalked);
+    
+}//end Walkable interface
