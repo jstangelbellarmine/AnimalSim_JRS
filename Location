@@ -14,7 +14,7 @@ public class Location {
     }// Preferred constructor
 
     
-    private void setCoordinates(int x, int y) {
+    public void setCoordinates(int x, int y) {
         try {
             if (x < 0 || y < 0) 
             {
@@ -50,7 +50,7 @@ public class Location {
         return yCoord;
     }//end getyCoord
 
-    public class InvalidCoordinateException extends Exception {
+    public class InvalidCoordinateException extends RuntimeException {
         public InvalidCoordinateException(String message) {
             super(message);
         }
