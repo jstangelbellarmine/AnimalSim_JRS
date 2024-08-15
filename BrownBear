@@ -1,13 +1,82 @@
+public class BrownBear extends Animal implements Walkable, Swimmable {
 
-public class BrownBear {
+    private String subSpecies;
 
-	private String subSpecies;
-	
-	public BrownBear() {
-		
-	}//end BrownBear
-	
-	public BrownBear(int simID, Location l, String subSpecies) {
-		
-	}//end Brown Bear
-}
+    public BrownBear() {
+        super();
+        this.subSpecies = "Alaskan";
+    }//end empty-argument constructor
+
+    public BrownBear(int simID, Location l, String subSpecies) {
+        super(simID, l);
+        setSubSpecies(subSpecies);
+    }//end preferred constructor
+
+    public String getSubSpecies() {
+        return subSpecies;
+    }//end getSubSpecies
+
+   
+    public void setSubSpecies(String subSpecies) {
+        try {
+            if (subSpecies == null || 
+                (!subSpecies.equals("Alaskan") && 
+                 !subSpecies.equals("Asiatic") &&
+                 !subSpecies.equals("European") &&
+                 !subSpecies.equals("Grizzly") &&
+                 !subSpecies.equals("Kodiak") &&
+                 !subSpecies.equals("Siberian"))) {
+                throw new InvalidSubspeciesException("Invalid subSpecies. Must be one of: Alaskan, Asiatic, European, Grizzly, Kodiak, Siberian.");
+            }
+            this.subSpecies = subSpecies;
+        } 
+        catch (InvalidSubspeciesException e) 
+        {
+            System.out.println("Error in setting subSpecies: " + e.getMessage());
+        }//end catch
+    }//end setSubSpecies
+
+    
+    @Override
+    public void walk(int xWalked, int yWalked) {
+    	
+        Location currentLocation = getLocation();
+        int[] coordinates = currentLocation.getCoordinates();
+        int x = coordinates[0];
+        int y = coordinates[1];
+        
+        x += 3 * xWalked;
+        y += 3 * yWalked;
+        
+        currentLocation.update(x, y);
+    }//end walk
+
+
+    @Override
+    public void swim(int xSwam, int ySwam) {
+
+    	Location currentLocation = getLocation();
+        int[] coordinates = currentLocation.getCoordinates();
+        int x = coordinates[0];
+        int y = coordinates[1];
+        
+        x += 2 * xSwam;
+        y += 2 * ySwam;
+        
+        currentLocation.update(x, y);
+    }//end swim
+    
+
+    public class InvalidSubspeciesException extends RuntimeException {
+        public InvalidSubspeciesException(String message) {
+            super(message);
+        }
+    }//end InvalidSubspeciesException exception
+
+	@Override
+	public String toString() {
+		return "BrownBear [subSpecies=" + subSpecies + ", simID=" + simID + ", location=" + location + ", full=" + full
+				+ ", rested=" + rested + "]";
+	}//end toString
+    
+}//end class
