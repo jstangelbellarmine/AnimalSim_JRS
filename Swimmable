@@ -1,4 +1,7 @@
-
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//This is a simple interface named Swimmable. It is called
+//upon in the Bear class only. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 public interface Swimmable {
 
 
