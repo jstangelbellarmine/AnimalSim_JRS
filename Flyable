@@ -1,6 +1,10 @@
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//This is a simple interface named Flyable. It is called
+//upon in the Goldfinch class only. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 public interface Flyable {
 
 	public void fly(Location l);
 	
-}//end Flyable interface
+}
