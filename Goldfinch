@@ -1,6 +1,17 @@
-public class Goldfinch extends Animal {
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//In this class, you will find Goldfinch objects that inherit
+//from Animal. Goldfinches have a wingSpan between 5-11, can
+//walk, and can fly. These actions are created by implementing
+//Walkable and Flyable interfaces. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public class Goldfinch extends Animal implements Walkable, Flyable {
 
     private double wingSpan;
+    protected int[] coordinates;
+    protected int x;
+    protected int y;
+    protected int xFlew;
+    protected int yFlew;
 
     public Goldfinch() {
         super(); 
@@ -23,7 +34,8 @@ public class Goldfinch extends Animal {
                 throw new InvalidWingspanException("Invalid Wingspan. Please remeasure and remember: minimum wingspan is 5cm and maximum wingspan is 11cm.");
             }
             this.wingSpan = wingSpan;
-        } catch (InvalidWingspanException e) 
+        } 
+        catch (InvalidWingspanException e) 
         {
             System.out.println("Error: " + e.getMessage());
         }
@@ -38,21 +50,18 @@ public class Goldfinch extends Animal {
     	
         Location currentLocation = getLocation();
         int[] coordinates = currentLocation.getCoordinates();
-        int x = coordinates[0];
-        int y = coordinates[1];
-        
-        x += (3 * xWalked);
-        y += (3 * yWalked);
-        
+        int x = xWalked + coordinates[0];
+        int y = yWalked + coordinates[1];        
         currentLocation.update(x, y);
     }//end walked 
     
-    public void fly(int x, int y) {
-        getLocation().setCoordinates(x, y);
-    }//end fly
-    
-  
-    
+    @Override
+    public void fly(Location location) {
+        int newX = location.getCoordinates()[0];
+        int newY = location.getCoordinates()[1];
+        getLocation().setCoordinates(newX, newY);
+    }
+ 
     public class InvalidWingspanException extends RuntimeException {
         public InvalidWingspanException(String message) {
             super(message);
