@@ -1,108 +1,139 @@
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//This is a very-lengthy test class that follows the same 
+//pattern: It will 1) create an object 2) modify the object
+//3) demonstrate exception errors for each object.
+//There are several stylistic choices used to organize 
+//output. The last test creates an Array of type Animal,
+//creating several different Animal Objects. There are
+//both empty-argument created objects as well as preferred-
+//constructor created objects. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 import java.util.*;
 
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("*********************************************"
-        	+"\n 	      Location Tests"
-        	+"\n*********************************************");
-
        
-        Location loc1 = new Location();
-        System.out.println("Empty-arg constructor: " + loc1.getCoordinates()[0] + ", " + loc1.getCoordinates()[1]);
+    	
+    	System.out.println("*********************************************"
+        	+"\n 	      Location Tests"
+        	+"\n*********************************************"
+        	+ "\n");
 
-
-        Location loc2 = new Location(10, 20);
-        System.out.println("Preferred constructor: " + loc2.getCoordinates()[0] + ", " + loc2.getCoordinates()[1]);
-
-
+       System.out.println("Create two Location Objects:");
+        Location firstLocation = new Location();
+        System.out.println("Empty-argument constructor: " + firstLocation.getCoordinates()[0] + ", " + firstLocation.getCoordinates()[1]);
+        Location secondLocation = new Location(22, 88);
+        System.out.println("Preferred constructor: " + secondLocation.getCoordinates()[0] + ", " + secondLocation.getCoordinates()[1]);
+        firstLocation.setCoordinates(6, 20);
+        
+        System.out.println("\n"
+        		+ "Updates Location:");
+        System.out.println("Updated location for firstLocation: " + firstLocation.getCoordinates()[0] + ", " + firstLocation.getCoordinates()[1]);
+       
+        System.out.println("\n"
+        		+ "Catches exception:");
         try {
-            Location loc3 = new Location(-5, 15);
-        } catch (Location.InvalidCoordinateException e) {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
-
+            Location thirdLocation = new Location(-5, 18);
+        } 
+        catch (Location.InvalidCoordinateException e) {
+            System.out.println("There seems to be a problem here: " + e.getMessage());
+        }//end exception check
         
-        loc2.setCoordinates(5, 10);
-        System.out.println("Updated coordinates: " + loc2.getCoordinates()[0] + ", " + loc2.getCoordinates()[1]);
+        System.out.println("\n"
+        					+"\n*********************************************"
+            				+"\n 	      Animal Test"
+            			 +"\n*********************************************"
+            				+"\n");
 
-        
-        System.out.println("*********************************************"
-            				+"\n 	      Animal Tests"
-            			 +"\n*********************************************");
-
-  
+        System.out.println("There is test code here, however it has been commented out."
+        					+"\nTo test this section, please delete the / /.");
         //Animal animal = new Animal();
 
-    
         
-        System.out.println("*********************************************"
+        System.out.println("\n"
+				+"\n*********************************************"
 				+"\n 	      Goldfinch Tests"
-			 +"\n*********************************************");
+			 +"\n*********************************************"
+				+"\n");
         
-      
-        Goldfinch goldfinch1 = new Goldfinch();
-        System.out.println("Goldfinch empty-arg constructor: " + goldfinch1.toString());
+        System.out.println("Create two Goldfinch Objects:");
+        Goldfinch finch1 = new Goldfinch();
+        System.out.println("Goldfinch empty-argument constructor: " + finch1.toString());
+        Goldfinch Finch2 = new Goldfinch(45, firstLocation, 10.9999);
+        System.out.println("Goldfinch preferred constructor: " + Finch2.toString());
 
+        System.out.println("\n"
+        		+ "Reset the wingspan of Finch2:");
+        Finch2.setWingSpan(8.8);
+        System.out.println("Updated wingspan: " + Finch2.toString());
+
+       System.out.println("\n"
+       		+ "Makes Finch2 walkd and fly:");
+        Finch2.walk(1, 0);
+        System.out.println("Goldfinch2 walked to: " + Finch2.getLocation().getCoordinates()[0] + ", " + Finch2.getLocation().getCoordinates()[1]);
+        Location flyLocation = new Location(15, 25); // Creating a Location object for the fly method
+        Finch2.fly(flyLocation);
+        System.out.println("Goldfinch2 flew to: " + Finch2.getLocation().getCoordinates()[0] + ", " + Finch2.getLocation().getCoordinates()[1]);
         
-        Goldfinch goldfinch2 = new Goldfinch(1, loc2, 7.5);
-        System.out.println("Goldfinch preferred constructor: " + goldfinch2.toString());
-
-
+        System.out.println("\n"
+        		+ "Catches error:");
+        		
         try {
-            Goldfinch goldfinch3 = new Goldfinch(2, loc2, 4.0);
+            Goldfinch Finch3 = new Goldfinch(2, firstLocation, 4.0);
         } catch (Goldfinch.InvalidWingspanException e) {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
-
-      
-        goldfinch2.setWingSpan(8.0);
-        System.out.println("Updated wingspan: " + goldfinch2.toString());
-
-       
-        goldfinch2.walk(1, 0);
-        System.out.println("Goldfinch walked to: " + goldfinch2.getLocation().getCoordinates()[0] + ", " + goldfinch2.getLocation().getCoordinates()[1]);
-
-   
-        goldfinch2.fly(15, 25);
-        System.out.println("Goldfinch flew to: " + goldfinch2.getLocation().getCoordinates()[0] + ", " + goldfinch2.getLocation().getCoordinates()[1]);
-
-        System.out.println("*********************************************"
-				+"\n 	      Brownbear Tests"
-			 +"\n*********************************************");
-
-
-        BrownBear bear1 = new BrownBear();
-        System.out.println("BrownBear empty-arg constructor: " + bear1.toString());
-
-
-        BrownBear bear2 = new BrownBear(3, loc1, "Grizzly");
-        System.out.println("BrownBear preferred constructor: " + bear2.toString());
-
-
+            System.out.println("There seems to be a problem here: " + e.getMessage());
+            
+        }//end exception check 
+        
+        
         try {
-            BrownBear bear3 = new BrownBear(4, loc1, "Panda");
-        } catch (BrownBear.InvalidSubspeciesException e) {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+            Goldfinch Finch3 = new Goldfinch(-5, firstLocation, 8.25);
+        } catch (Goldfinch.InvalidWingspanException e) {
+            System.out.println("There seems to be a problem here: " + e.getMessage());
+            
+        }//end exception check 
+        
+        System.out.println("\n"
+        		+ "\n*********************************************"
+				+"\n 	      Brownbear Tests"
+			 +"\n*********************************************"
+				+"\n");
 
- 
-        bear2.setSubSpecies("Kodiak");
-        System.out.println("Updated subspecies: " + bear2.toString());
+        System.out.println("Create two Bear Objects:");
+        BrownBear firstBear = new BrownBear();
+        System.out.println("BrownBear empty-argument constructor: " + firstBear.toString());
+        BrownBear secondBear = new BrownBear(3, secondLocation, "Grizzly");
+        System.out.println("BrownBear preferred constructor: " + secondBear.toString());
 
+        
+        System.out.println("\n"
+        		+"Update subspecies for firstBear:");
+        firstBear.setSubSpecies("Kodiak");
+        System.out.println("Updated subspecies: " + firstBear.toString());
+        
+        System.out.println("\n"
+        		+ "Make firstBear walk and swim. When catches an error in swim, it sets location to (0,0): ");
+        firstBear.walk(1, 0);
+        System.out.println("BrownBear walked to: " + firstBear.getLocation().getCoordinates()[0] + ", " + firstBear.getLocation().getCoordinates()[1]);
+        firstBear.swim(0, -1);
+        System.out.println("BrownBear swam to: " + firstBear.getLocation().getCoordinates()[0] + ", " + firstBear.getLocation().getCoordinates()[1]);
 
-        bear2.walk(1, 0);
-        System.out.println("BrownBear walked to: " + bear2.getLocation().getCoordinates()[0] + ", " + bear2.getLocation().getCoordinates()[1]);
-
-
-        bear2.swim(0, -1);
-        System.out.println("BrownBear swam to: " + bear2.getLocation().getCoordinates()[0] + ", " + bear2.getLocation().getCoordinates()[1]);
-    
-
-
-        System.out.println("*********************************************"
+        System.out.println("\n"
+        		+ "Catches error:");
+        try {
+            BrownBear thirdBear = new BrownBear(4, secondLocation, "Panda");
+        }//end try 
+        catch (BrownBear.InvalidSubspeciesException e) {
+            System.out.println("There seems to be a problem here: " + e.getMessage());
+        }//end catch
+        
+        System.out.println("\n"
+        		+ "*********************************************"
 				+"\n 	      Generics Tests"
-			 +"\n*********************************************");
+			 +"\n*********************************************"
+				+"\n");
 
 
         ArrayList<Animal> animalList = new ArrayList<>();
@@ -110,13 +141,16 @@ public class Application {
         animalList.add(new Goldfinch());
         try 
         {
-            animalList.add(new Goldfinch(3, new Location(2, 3), 6.0));
+            animalList.add(new Goldfinch(234, new Location(2, 3), 6.75));
         } 
         catch (Goldfinch.InvalidWingspanException e) 
         {
-            System.out.println("Error: " + e.getMessage());
-        }
+            System.out.println("There seems to be a problem here: " + e.getMessage());
+        }      
+        
+        animalList.add(new Goldfinch(142, new Location(12, 74), 5.0000));
 
+        
         animalList.add(new BrownBear());
         try 
         {
@@ -124,12 +158,15 @@ public class Application {
         } 
         catch (BrownBear.InvalidSubspeciesException e) 
         {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("There seems to be a problem here: " + e.getMessage());
         }//end 
-
+        
+        animalList.add(new BrownBear(612, new Location(104, 89), "Asiatic"));  
+        
         for (Animal animal : animalList) {
             System.out.println(animal.toString());
-        }//end for loop itteration
+        }//end for loop iteration
+        
     }//end main
 }//end class
 
