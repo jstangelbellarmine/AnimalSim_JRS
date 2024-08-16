@@ -1,3 +1,12 @@
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//In this class, you will find an abstract class called 
+//Animal. It will set the skeleton for an Animal object 
+//that will have a simID and location, two things that will
+//be inherited by all Animal objects. The simID must be 
+//greater than zero and the full/rested booleans are
+//based on a random decimal between 0-1.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 import java.util.*;
 
 public abstract class Animal {
@@ -6,6 +15,8 @@ public abstract class Animal {
     protected Location location;
     protected boolean full;
     protected boolean rested;
+    public String l;
+    public double p;
 
     public Animal() {
         this.simID = 0;
@@ -26,7 +37,7 @@ public abstract class Animal {
         if (simID <= 0) {
             try 
             {
-                throw new InvalidSimIDException("simID cannot be zero or negative.");
+                throw new InvalidSimIDException("simID cannot be negative.");
             }//end try 
             catch (InvalidSimIDException e) 
             {
@@ -73,7 +84,7 @@ public abstract class Animal {
         }//end try 
         catch (InvalidSimIDException e) 
         {
-            System.out.println("Error setting simID: " + e.getMessage());
+            System.out.println("There seems to be a problem here:  "+ e.getMessage());
         }//end catch 
     }//end setSimID
 
@@ -104,7 +115,7 @@ public abstract class Animal {
    
     public class InvalidSimIDException extends RuntimeException {
         public InvalidSimIDException(String message) {
-            super("Please reenter simID. This simID is invalid: "+ message);
+            super("This simID is invalid. "+ message);
         }
         
     }//end InvalidSimIDException exception
