@@ -1,6 +1,22 @@
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//In this class, you will find Bear objects that inherit
+//from Animal. Bears must be of a set subspecies, can
+//walk, and can swim. These actions are created by implementing
+//Walkable and Flyable interfaces. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+import java.util.*;
+
 public class BrownBear extends Animal implements Walkable, Swimmable {
 
     private String subSpecies;
+    protected int x;
+    protected int y;
+    protected int[] coordinates;
+    public int xWalked;
+    public int yWalked;
+    public int xSwam;
+    public int	ySwam;
 
     public BrownBear() {
         super();
@@ -18,38 +34,31 @@ public class BrownBear extends Animal implements Walkable, Swimmable {
 
    
     public void setSubSpecies(String subSpecies) {
+        List<String> validSubspecies = Arrays.asList("Alaskan", "Asiatic", "European", "Grizzly", "Kodiak", "Siberian");
+        
         try {
-            if (subSpecies == null || 
-                (!subSpecies.equals("Alaskan") && 
-                 !subSpecies.equals("Asiatic") &&
-                 !subSpecies.equals("European") &&
-                 !subSpecies.equals("Grizzly") &&
-                 !subSpecies.equals("Kodiak") &&
-                 !subSpecies.equals("Siberian"))) {
-                throw new InvalidSubspeciesException("Invalid subSpecies. Must be one of: Alaskan, Asiatic, European, Grizzly, Kodiak, Siberian.");
+            if (subSpecies == null || !validSubspecies.contains(subSpecies)) {
+                throw new InvalidSubspeciesException("Invalid subspecies. Must be one of: " + validSubspecies);
             }
             this.subSpecies = subSpecies;
-        } 
+        }//end try 
         catch (InvalidSubspeciesException e) 
         {
-            System.out.println("Error in setting subSpecies: " + e.getMessage());
+            System.out.println("We encountered a problem: " + e.getMessage());
         }//end catch
-    }//end setSubSpecies
+    }//end setSubSpecies 
 
     
     @Override
     public void walk(int xWalked, int yWalked) {
-    	
         Location currentLocation = getLocation();
         int[] coordinates = currentLocation.getCoordinates();
-        int x = coordinates[0];
-        int y = coordinates[1];
-        
-        x += 3 * xWalked;
-        y += 3 * yWalked;
+        int x = (3 * xWalked) + coordinates[0];
+        int y = (3 * yWalked) + coordinates[1];
         
         currentLocation.update(x, y);
-    }//end walk
+    
+    	}//end walk
 
 
     @Override
@@ -57,11 +66,8 @@ public class BrownBear extends Animal implements Walkable, Swimmable {
 
     	Location currentLocation = getLocation();
         int[] coordinates = currentLocation.getCoordinates();
-        int x = coordinates[0];
-        int y = coordinates[1];
-        
-        x += 2 * xSwam;
-        y += 2 * ySwam;
+        int x = (2 * xSwam) + coordinates[0];
+        int y = (2 * ySwam) + coordinates[1];
         
         currentLocation.update(x, y);
     }//end swim
@@ -73,10 +79,11 @@ public class BrownBear extends Animal implements Walkable, Swimmable {
         }
     }//end InvalidSubspeciesException exception
 
-	@Override
-	public String toString() {
-		return "BrownBear [subSpecies=" + subSpecies + ", simID=" + simID + ", location=" + location + ", full=" + full
-				+ ", rested=" + rested + "]";
-	}//end toString
+    @Override
+    public String toString() {
+        return "BrownBear [subSpecies=" + subSpecies + ", simID=" + getSimID() + 
+               ", location=" + getLocation().getCoordinates()[0] + "," + getLocation().getCoordinates()[1] + 
+               ", full=" + isFull() + ", rested=" + isRested() + "]";
+    }//end toString
     
 }//end class
