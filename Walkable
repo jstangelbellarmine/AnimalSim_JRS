@@ -1,3 +1,7 @@
+//~~~~~~~~~~~~~~~~~~Programmer's Notes~~~~~~~~~~~~~~~~~~
+//This is a simple interface named Walkable. It is called
+//upon in both the Goldfinch and Bear classes. 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 public interface Walkable {
 	
     void walk(int xWalked, int yWalked);
